@@ -1,0 +1,74 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc monitor -d $ws1 2 3 4 5 6 7 8 9 10
+
+bspc config border_width         3
+bspc config window_gap          12
+bspc config top_padding 	14
+
+#Border color
+bspc config focused_border_color \#7f03fc
+
+bspc config split_ratio          0.52
+bspc config border_radius 	 10
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+#Workspaces specific rule
+#=> Code editors
+bspc rule -a "Code - Insiders"          desktop='^1' follow=on
+bspc rule -a code-oss                   desktop='^1' follow=on
+bspc rule -a subl                       desktop='^1' follow=on
+bspc rule -a geany                      desktop='^1' follow=on
+bspc rule -a mousepad                   desktop='^1' follow=on
+
+
+#=> Terminal emulathors 
+bspc rule -a Alacritty                  desktop='^2' follow=on
+bspc rule -a kitty  			desktop='^2' follow=on
+bspc rule -a urxvt                      desktop='^2' follow=on
+bspc rule -a termiinator                desktop='^2' follow=on
+bspc rule -a xterm                      desktop='^2' follow=on
+
+#=> Web explorers
+bspc rule -a firefox                    desktop='^3' follow=on
+bspc rule -a qutebrowser                desktop='^3' follow=on
+bspc rule -a opera 			desktop='^3' follow=on
+bspc rule -a chromium 			desktop='^3' follow=on
+bspc rule -a librewolf 			desktop='^3' follow=on
+bspc rule -a vimb                       desktop='^3' follow=on
+bspc rule -a vivaldi                    desktop='^3' follow=on
+bspc rule -a palemoon                   desktop='^3' follow=on
+
+#=> File explorer
+bspc rule -a "Thunar"                   desktop='^4' follow=on
+bspc rule -a nautilus 			desktop='^4' follow=on
+bspc rule -a dolphin 			desktop='^4' follow=on
+bspc rule -a ranger			desktop='^4' follow=on
+
+bspc rule -a "spotify","Spotify"	desktop='^5' follow=on
+bspc rule -a "VirtualBox Manager"	desktop='^6' follow=on
+
+#State rule
+bspc rule -a Pavucontrol state=floating
+bspc rule -a unzip       state=floating
+bspc rule -a unrar       state=floating
+bspc rule -a mplayer2    state=floating
+#bspc rule -a Guake 	 state=floating rectangle="1914"x"1074"+0+0
+
+killall -q polybar
+picom &
+dunst &
+thunar --daemon & 
+alacritty &
+guake &
+mopidy &
+feh --bg-fill /home/manuel/Imágenes/fondos/1640126111345.jpg
+xsetwacom set "Wacom One by Wacom S Pen Stylus" rotate half
+polybar -q example -c "~/.config/polybar/config/configbsp.ini"
+reflector --verbose --country Brazil --latest 5 --sort rate --save /etc/pacman.d/mirrorlist &
