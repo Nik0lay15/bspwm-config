@@ -47,11 +47,16 @@ bspc rule -a palemoon                   desktop='^3' follow=on
 
 #=> File explorer
 bspc rule -a "Thunar"                   desktop='^4' follow=on
-bspc rule -a nautilus 			desktop='^4' follow=on
+bspc rule -a Org.gnome.Nautilus 	desktop='^4' follow=on
 bspc rule -a dolphin 			desktop='^4' follow=on
 bspc rule -a ranger			desktop='^4' follow=on
 
+#=> File editor
+bspc rule -a "DesktopEditors" 		desktop='^5' follow=on
+
 bspc rule -a "spotify","Spotify"	desktop='^5' follow=on
+
+
 bspc rule -a "VirtualBox Manager"	desktop='^6' follow=on
 
 #State rule
@@ -66,7 +71,7 @@ picom &
 dunst &
 thunar --daemon & 
 alacritty &
-guake &
+#guake &
 mopidy &
 feh --bg-fill /home/manuel/Imágenes/fondos/1640126111345.jpg
 xsetwacom set "Wacom One by Wacom S Pen Stylus" rotate half
