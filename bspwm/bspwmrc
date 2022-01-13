@@ -44,6 +44,7 @@ bspc rule -a librewolf 			desktop='^3' follow=on
 bspc rule -a vimb                       desktop='^3' follow=on
 bspc rule -a vivaldi                    desktop='^3' follow=on
 bspc rule -a palemoon                   desktop='^3' follow=on
+bspc rule -a Surf 			desktop='^3' follow=on
 
 #=> File explorer
 bspc rule -a "Thunar"                   desktop='^4' follow=on
@@ -51,12 +52,11 @@ bspc rule -a Org.gnome.Nautilus 	desktop='^4' follow=on
 bspc rule -a dolphin 			desktop='^4' follow=on
 bspc rule -a ranger			desktop='^4' follow=on
 
+bspc rule -a mpv 			desktop='^5' follow=on
+
 #=> File editor
 bspc rule -a "DesktopEditors" 		desktop='^5' follow=on
-
 bspc rule -a "spotify","Spotify"	desktop='^5' follow=on
-
-
 bspc rule -a "VirtualBox Manager"	desktop='^6' follow=on
 
 #State rule
@@ -64,16 +64,17 @@ bspc rule -a Pavucontrol state=floating
 bspc rule -a unzip       state=floating
 bspc rule -a unrar       state=floating
 bspc rule -a mplayer2    state=floating
+bspc rule -a Surf 	 state=tiled
 #bspc rule -a Guake 	 state=floating rectangle="1914"x"1074"+0+0
 
 killall -q polybar
 picom &
 dunst &
-thunar --daemon & 
+Thunar --daemon & 
 alacritty &
 #guake &
 mopidy &
-feh --bg-fill /home/manuel/Imágenes/fondos/1640126111345.jpg
+feh --bg-fill /home/manuel/Images/fondos/1640126111345.jpg
 xsetwacom set "Wacom One by Wacom S Pen Stylus" rotate half
-polybar -q example -c "~/.config/polybar/config/configbsp.ini"
-reflector --verbose --country Brazil --latest 5 --sort rate --save /etc/pacman.d/mirrorlist &
+polybar -q example -c "~/.config/polybar/config.ini"
+#reflector --verbose --country Brazil --latest 5 --sort rate --save /etc/pacman.d/mirrorlist &
